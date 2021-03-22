@@ -158,5 +158,25 @@ namespace ToolsBoxEngine {
 
         #endregion
 
+        #region Random
+
+        public static int RandWeight(params int[] weight) {
+            int totWeight = 0;
+            for (int i = 0; i < weight.Length; i++) {
+                totWeight += weight[i];
+            }
+
+            int rand = UnityEngine.Random.Range(0, totWeight);
+
+            for (int i = 0; i < weight.Length; i++) {
+                if (rand <= weight[i]) {
+                    return i;
+                }
+                rand -= weight[i];
+            }
+            return -1;
+        }
+
+        #endregion
     }
 }
